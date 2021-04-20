@@ -3,6 +3,7 @@
 //
 #include <iostream>
 #include <vector>
+#include <fstream>
 
 using namespace std;
 
@@ -31,24 +32,29 @@ public:
     }
 
     friend ostream &operator<<(ostream &os, const Point &point) {
-        os << "x: " << point.x << " y: " << point.y;
+        os << "x: " << point.x << "," << " y: " << point.y;
         return os;
     }
 };
 
 class Xspline {
 public:
-    Xspline(const vector<Point> &points, double *s) : points(points), s(s) {
+    Xspline(const vector<Point> &points, double *s) : points(points), shape(s) {
     }
 
     Point C(double t, int k) {
-        return (points[k] * a0(t, s[k + 1]) + points[k + 1] * a1(t, s[k + 2]) + points[k + 2] * a2(t, s[k + 1]) +
-                points[k + 3] * a3(t, s[k + 2])) / (a0(t, s[k + 1]) + a1(t, s[k + 2]) + a2(t, s[k + 1]) +
-                                                    a3(t, s[k + 2]));
+        return (points[k] * a0(t, shape[k + 1]) +
+                points[k + 1] * a1(t, shape[k + 2]) +
+                points[k + 2] * a2(t, shape[k + 1]) +
+                points[k + 3] * a3(t, shape[k + 2])) /
+               (a0(t, shape[k + 1]) +
+                a1(t, shape[k + 2]) +
+                a2(t, shape[k + 1]) +
+                a3(t, shape[k + 2]));
     }
 
 private:
-    double *s;
+    double *shape;
     vector<Point> points;
 
     double F(double u, double p) {
@@ -110,17 +116,21 @@ private:
 
 int main() {
     vector<Point> points;
-    double x[] = {.1, .3, .5, .7, .9};
-    double y[] = {.4, .6, .4, .6, .4};
-    double s[] = {1, 1, 1, 1, 1, 1, 1};
+    double x[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+    double y[] = {1, 2, 3, 2, 1, 1, 1, 1, 1, 1};
+    double s[] = {0, 1, 1, 1, 1, 1, 1, 1, 0};
     for (int i = 0; i < 7; ++i) {
         Point point(x[i], y[i]);
         points.push_back(point);
     }
     Xspline xspline(points, s);
-    for (int i = 0; i < 3; ++i) {
-        cout << xspline.C(0, i) << endl;
+    ofstream file;
+    file.open("result.txt");
+    for (int i = 0; i < 2; ++i) {
+        for (double t = 0; t <= 1; t += 0.1) {
+            file << xspline.C(t, i) << endl;
+        }
     }
-
+    file.close();
     return 0;
 }
