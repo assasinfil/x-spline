@@ -13,9 +13,9 @@ public:
 
     Point(double x, double y) : x(x), y(y) {}
 
-    Point operator*(double a) const {
-        x * a;
-        y * a;
+    Point operator*(double a) {
+        x *= a;
+        y *= a;
         return *this;
     }
 
