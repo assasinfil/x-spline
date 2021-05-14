@@ -4,6 +4,7 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
+#include <iomanip>
 
 using namespace std;
 
@@ -116,8 +117,8 @@ private:
 
 int main() {
     vector<Point> points;
-    double x[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
-    double y[] = {1, 2, 3, 2, 1, 1, 1, 1, 1, 1};
+    vector<double> x = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+    vector<double> y = {0, 3, 0, 2, 0, 1, 0, 1, 0, 1};
     double s[] = {0, 1, 1, 1, 1, 1, 1, 1, 0};
     for (int i = 0; i < 7; ++i) {
         Point point(x[i], y[i]);
@@ -126,9 +127,9 @@ int main() {
     Xspline xspline(points, s);
     ofstream file;
     file.open("result.txt");
-    for (int i = 0; i < 2; ++i) {
+    for (int i = 0; i < x.size()-3; ++i) {
         for (double t = 0; t <= 1; t += 0.1) {
-            file << xspline.C(t, i) << endl;
+            file << setprecision(6) << fixed << xspline.C(t, i) << endl;
         }
     }
     file.close();
