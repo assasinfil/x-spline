@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 
-with open("result.txt") as f:
+with open("cmake-build-debug/result.txt") as f:
     data = f.readlines()
 
 points_x = list()
@@ -11,5 +11,5 @@ for line in data:
     points_x.append(float(x[3:]))
     points_y.append(float(y[3:]))
 
-plt.plot(points_x, points_y)
+plt.scatter(points_x, points_y)
 plt.show()
