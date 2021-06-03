@@ -1,15 +1,16 @@
 import matplotlib.pyplot as plt
 
-with open("cmake-build-debug/result.txt") as f:
-    data = f.readlines()
+while True:
+    with open("cmake-build-debug/result.txt") as f:
+        data = f.readlines()
 
-points_x = list()
-points_y = list()
+    points_x = list()
+    points_y = list()
+    data.sort()
+    for line in data:
+        x, y = line.rstrip().split(', ')
+        points_x.append(float(x[3:]))
+        points_y.append(float(y[3:]))
 
-for line in data:
-    x, y = line.rstrip().split(', ')
-    points_x.append(float(x[3:]))
-    points_y.append(float(y[3:]))
-
-plt.scatter(points_x, points_y)
-plt.show()
+    plt.plot(points_x, points_y)
+    plt.show()
