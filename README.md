@@ -1,6 +1,9 @@
 # x-spline
 
-## Компиляция:
+## Зависимости
+- [openmp](https://www.openmp.org/)
+- [matplotlib](https://pypi.org/project/matplotlib/)
+## Компиляция
 ### Release
 ```bash
 mkdir cmake-build-release
