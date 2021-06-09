@@ -1,5 +1,6 @@
 # x-spline
-
+Реализация x-splines по [статье от 15 сентября 1995 года](https://dl.acm.org/doi/10.1145/218380.218488).
+Реализован только двухмерный режим.
 ## Зависимости
 - [openmp](https://www.openmp.org/)
 - [matplotlib](https://pypi.org/project/matplotlib/)
