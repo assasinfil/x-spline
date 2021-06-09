@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 
 while True:
-    with open("cmake-build-debug/result.txt") as f:
+    with open("result.txt") as f:
         data = f.readlines()
 
     points_x = list()
