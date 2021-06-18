@@ -29,7 +29,6 @@ public:
         this->shape[1] = 0;
         this->shape[count] = 0;
 
-#pragma omp parallel for default(none) shared(control_x, control_y, shape)
         for (int i = 0; i < this->count; ++i) {
             this->control_x[i + 1] = control_x[i];
             this->control_y[i + 1] = control_y[i];
@@ -228,7 +227,6 @@ private:
 
         if (s1 < 0) {
             if (s2 < 0) {
-//#pragma omp for
                 for (double t = 0.0; t < 1; t += step) {
                     negative_s1_influence(t, s1, &blend[0], &blend[2]);
                     negative_s2_influence(t, s2, &blend[1], &blend[3]);
@@ -236,7 +234,6 @@ private:
                     point_adding(blend, p0, p1, p2, p3);
                 }
             } else {
-//#pragma omp for
                 for (double t = 0.0; t < 1; t += step) {
                     negative_s1_influence(t, s1, &blend[0], &blend[2]);
                     positive_s2_influence(k, t, s2, &blend[1], &blend[3]);
@@ -245,7 +242,6 @@ private:
                 }
             }
         } else if (s2 < 0) {
-//#pragma omp for
             for (double t = 0.0; t < 1; t += step) {
                 positive_s1_influence(k, t, s1, &blend[0], &blend[2]);
                 negative_s2_influence(t, s2, &blend[1], &blend[3]);
@@ -253,7 +249,6 @@ private:
                 point_adding(blend, p0, p1, p2, p3);
             }
         } else {
-//#pragma omp for
             for (double t = 0.0; t < 1; t += step) {
                 positive_s1_influence(k, t, s1, &blend[0], &blend[2]);
                 positive_s2_influence(k, t, s2, &blend[1], &blend[3]);
