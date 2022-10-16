@@ -6,7 +6,7 @@ while True:
 
     points_x = list()
     points_y = list()
-    data.sort()
+    # data.sort()
     for line in data:
         x, y = line.rstrip().split(', ')
         points_x.append(float(x[3:]))

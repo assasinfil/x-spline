@@ -1,14 +1,8 @@
-cmake_minimum_required(VERSION 3.19)
+cmake_minimum_required(VERSION 3.23)
 project(x_spline)
 
-set(CMAKE_CXX_STANDARD 14)
-find_package(OpenMP)
-if (OPENMP_FOUND)
-    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${OpenMP_C_FLAGS}")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
-endif ()
+set(CMAKE_CXX_STANDARD 20)
+find_package(OpenMP REQUIRED)
 
-include_directories(.)
-
-add_executable(x_spline
-        main.cpp)
+add_executable(x_spline main.cpp)
+target_link_libraries(x_spline OpenMP::OpenMP_CXX)
