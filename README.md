@@ -1,24 +1,26 @@
 # x-spline
-
+Реализация x-splines по [статье от 15 сентября 1995 года](https://dl.acm.org/doi/10.1145/218380.218488).
+Реализован только двухмерный режим.
 ## Зависимости
 - [openmp](https://www.openmp.org/)
 - [matplotlib](https://pypi.org/project/matplotlib/)
 ## Компиляция
 ### Release
 ```bash
-mkdir cmake-build-release
-cd cmake-build-release
-cmake -DCMAKE_BUILD_TYPE=Release ..
+cmake -DCMAKE_BUILD_TYPE=Release .
 make
 ```
 ### Debug
 ```bash
-mkdir cmake-build-debug
-cd cmake-build-debug
-cmake -DCMAKE_BUILD_TYPE=Debug ..
+cmake -DCMAKE_BUILD_TYPE=Debug .
 make
 ```
-## Визуализация
+## Использование
+### Запуск
+```bash
+./x-spline
+```
+### Визуализация
 ```python
 python visualiser.py
 ```
